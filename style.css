@@ -1,0 +1,208 @@
+/* Import de la police */
+@import url('https://fonts.googleapis.com/css2?family=Comme:wght@300&display=swap');
+
+/* L'etoile donne du style a tout le monde  */
+/* *{
+    margin: 0;
+    padding: 0;
+} */
+
+/* Je veux que l'image soit centré et pas répété, Au min 100 vh sur le body mais naturellement tu peux faire plus */
+body{
+    background: url(./assets/essai.jpeg)  center/cover;
+    min-height: 100vh;
+}
+/* Je vais appliquer un style a toutes les balises h1 */
+h1{
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+    /* Les tailles de police doivent etre en rem  1rem=16 pixels*/
+    font-size: 6vw;
+    /* Ombre */
+    text-shadow: 8 4 4 black;
+    color: rgb(206, 30, 54);
+    text-decoration: underline;
+    /* Sans serif si trouve pas la police prend la police sans serif */
+    font-family: 'Comme', sans-serif; 
+}
+
+main{
+    /* Pour les grosses sections pas forcé la taille : on dit juste le min  */
+    min-height: 500px;
+    /* Pour les largeurs puissantes les %, quelque soit la taille de l'écran la boite fait tojous 90% de la taille de la page */
+    width: 90%;
+    /* Il reste 10 % et on veut centrer pour avoir 5%,  0 pour haut bas et auto pour gauche droite */
+    /* On aurait pu etre margin top si on veut etre plus écarté du haut */
+    margin: 0 auto;
+    /* Je mets de l'opcaite comme ca je vois toujours le fonds -> eb cliquant sur la couleur */
+    background: rgba(179, 164, 164, 0.774);
+    border: 2px solid rgba(21, 21, 197, 0.842);
+    /* 20 px 20px 0 0 je vais avoir les bords du hait ronds pas ceux du bas */
+    border-radius: 20px; 
+    box-shadow: 0 0 20px 3px rgba(7, 136, 241, 0.959);
+    /* Marge Interieur que 15px j'ai le meme ecart sur les 4 -> Pour les dimensions utiliser ruler measurement*/
+    padding: 15px;
+}
+
+h2{
+    /* Tous mes H2 je supprime les marges */
+    margin: 0;
+}
+
+/* On va selectionner une classe flexbox */
+.flexbox,
+.grid,
+.absolute{
+    border: 2px solid skyblue;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 20px;
+    text-align: center;
+    min-height: 150px;
+}
+
+ /* ///////////////////////   FLEX ///////////////////////  */
+
+/* On fait du flex car on veut que les 3 elements de la liste se fassent 3 boites repartient équitablement dans la boite flex */
+/* je pointe les li du flexbox */
+/* Pour flex faut un parent (ul) aux 3 elemnts que l'on va aligner */
+.flexbox ul{
+    /* On eleve le padding  */
+    padding: 0;
+    /* On les met cote a cote */
+    display: flex;
+    /* on va les repertir auto -> voir a droite de la ligne CSS dans insepecteur pour les methodes pour répartir*/
+    justify-content: space-around;
+}
+.flexbox li{
+    /* plus les boulet points */
+    list-style: none;
+    height: 160px;
+    width: 160px;
+    /* 10 pour tt les marges */
+    margin: 10px;
+    background: turquoise;
+    /* Centrer un unique element dans une boite */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+ /* ///////////////////////   GRID ///////////////////////  */
+/* Grid 30% image et 70% */
+.grid-container{
+    display: grid;
+    /* J'ai mis que 2% parce que j'ai que 2 anfants */
+    grid-template-columns: 30% 70%;
+}
+/* Gestion image */
+.grid img{
+    width: 80%;
+    margin-top: 20px;
+    margin: 0 auto;
+    display: block;
+}
+
+form{
+    display: grid;
+    /* fr c'est pour fractions La on lui que j'aurias 3 lignes et 2 colonnes te maintatnt et on les repartir dans la grille*/
+    grid-template-columns: 1fr 1fr;
+    grid-row: 1fr 1fr 1fr;
+    /* Je vais le dessin en faisant qui va ou */
+    grid-template-areas: 
+    "i1 i2"
+    "ta ta"
+    "vi bt";
+   
+}
+
+/* Je vais dire a la texte area de se mettre à la palce ta */
+textarea{
+    grid-area: ta;
+    height: 40px;
+    /* Utilisateur peut pas modifier taille */
+    resize: none;
+}
+
+/* #pour pointer l'id, . pour pointer la classe et pour un element HTML on met rien */
+#bt-sub{
+    grid-area: bt;
+    /* Montrer que le bouton est cliquable */
+    cursor: pointer;
+    background: cyan;
+    transition: 0.2s ;
+}
+/* Quand tu survoles ton boutton ca change la couleur */
+#bt-sub:hover{
+    background-color: beige;
+    color: aqua;
+}
+
+input,textarea{
+    margin: 5px;
+    border: 1px solid darkblue;
+    padding: 10px;
+    font-size: 1.1rem;
+    font-family: "DMSherif";
+    border-radius: 5px;
+}
+
+/* ///////////////////////////// ABSOLUTE /////////////////// */
+.absolute{
+    /* Permet d'avoir les enfants qui vont etre posities en absolute par rapport au parent et pas le body */
+    position: relative;
+}
+#circle1{
+    height: 80px;
+    width: 80px;
+    background: skyblue;
+    position: absolute;
+    /* Absolute on va pouvoir lui donner une position en TOP Bootomm Left Right, Par default c'est pas dans le parent mais dans le body */
+    border-radius: 150px;
+    top: 0;
+    right: 0;
+}
+
+#circle2{
+    height: 40px;
+    width: 40px;
+    border-radius: 150px;
+    background: blueviolet;
+    position: absolute;
+    /* #Il va se centrer sur le bord gauche et pas son centre, on va le transform  */
+    left: 50%;
+    transform: translate(-50%);
+
+
+}
+
+/* Resposinsive pour adapter quand on change taille de l'écran -> Bien mettre son ecran en 100% */
+/* max Width ca va va etre la hauteur max a laquelle les reg sont pris en compte. En bidouillant l'écran on voit qu'à partir de 900pixels ca beug */
+@media screen and (max-width:900px) {
+    .grid-container{
+        display: block;        
+    }
+    .grid img{
+        width: 40%;
+
+    }
+}
+
+/* Le formule casse aussi a 600 */
+@media screen and (max-width:610px) {
+    form{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+        "i1"
+        "i2"
+        "ta"
+        "bt" ;
+    }
+
+    input,area{
+        font-size: 0.8rem;
+    }
+}
